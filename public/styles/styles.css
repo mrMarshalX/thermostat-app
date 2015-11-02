@@ -1,0 +1,58 @@
+html {
+  overflow-y:scroll;
+  min-width:345px;  
+}
+
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+	user-select: none;	
+}
+
+.plot {
+	cursor:pointer;
+}
+
+.plot svg {
+    background: #fff;
+    text-align: center;
+}
+
+.plot.disabled, .plot.off, .btn.disabled {
+	pointer-events:none;
+}
+
+.plot.on svg .valueArc {
+  fill:#33691e;
+}
+
+.plot.on svg .interactArc {
+  fill:#4caf50;
+}
+
+.plot.off svg .valueArc {
+  fill:#b71c1c;
+}
+
+.plot.off svg .interactArc {
+  fill:#f44336;
+}
+
+.plot.disabled svg .valueArc {
+	fill:#212121;
+}
+
+.plot.disabled svg .interactArc {
+	fill:#757575;
+}
+
+.card .card-action a, .card .card-action a:hover {
+  color:#fff;
+}
+
+#index-view .badge.new:after {
+  content: '';
+}

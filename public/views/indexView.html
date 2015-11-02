@@ -1,0 +1,49 @@
+<div id="index-view" class="row">
+  <div class="l6 m12 s12 col" ng-repeat="val in values track by $index">
+    <div ng-click="areaClicked(val.id, val.isWorking)" class="center-align card z-depth-2">
+      <div class="card-content black-text">
+      	<div class="card-title black-text">
+          <span>Current temperature: {{ val.value }}</span>
+        </div>
+        <gmd-dial value="val.value" 
+        	start-angle="30" 
+        	end-angle="330" 
+        	class="plot center-align" 
+        	data-id="val.id"
+        	data-index="$index"
+        	ng-class="{ 'disabled': !val.isWorking, 'off': !val.isOn, 'on': val.isOn }"
+        	ng-mousedown="thermostatMouseDown(val.id)"
+          ng-mouseup="thermostatMouseUp(val.id)">
+        </gmd-dial>
+      </div>
+      <div class="buttons center-align card-action">
+        <a class="waves-effect waves-light btn red"
+          ng-if="val.isOn" 
+          ng-click="turn('off', val.id, $index)">
+          Off
+        </a>
+        <a class="waves-effect waves-light btn green"
+          ng-if="!val.isOn && val.isWorking" 
+          ng-click="turn('on', val.id, $index)">
+          On
+        </a>
+        <a class="waves-effect waves-light btn orange"
+          ng-if="!val.isWorking"
+          ng-click="turn('restart', val.id, $index)">
+          Restart
+        </a>    
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="confirm-modal" class="modal bottom-sheet">
+  <div class="modal-content">
+    <h4 class="text-red">Temperature changes confirmation</h4>
+    <p>Do you want to change temperature to {{ recentlyChanged.value }}</p>
+  </div>
+  <div class="modal-footer">
+    <a href="" class="waves-effect waves-red btn-flat" ng-click="discard()">Discard</a>
+    <a href="" class="waves-effect waves-green btn-flat" ng-click="agree()">Agree</a>
+  </div>
+</div>
